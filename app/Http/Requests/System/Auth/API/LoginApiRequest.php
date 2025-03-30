@@ -22,7 +22,7 @@ class LoginApiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'msisdn' => ['required', 'regex:/^09[0-9]{6,9}$/'],
+            'msisdn' => ['required', 'regex:/^0[0-9]{5,10}$/'],
             'ip' => ['required'],
             'city_id' => ['required'],
             'password' => ['required'],
