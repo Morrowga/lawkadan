@@ -30,7 +30,11 @@ class PostRepository implements PostRepositoryInterface
                 return $this->error('City ID Required', 400);
             }
 
-            $posts = Post::where('city_id', $request->query('city_id'))->paginate(10);
+            $posts = Post::with(['user', 'city', 'category'])
+            ->where('status', '!=', 'closed')
+            ->where('city_id', $request->query('city_id'))
+            ->orderBy('created_at', 'desc') 
+            ->paginate(10);
 
             $postsArray = [
                 'current_page' => $posts->currentPage(),

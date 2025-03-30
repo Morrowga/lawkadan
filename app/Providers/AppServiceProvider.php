@@ -6,10 +6,12 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\System\Auth\API\AuthRepository;
 use App\Repositories\System\Post\API\PostRepository;
+use App\Repositories\System\Dashboard\DashboardRepository;
 use App\Interfaces\System\Auth\API\AuthRepositoryInterface;
 use App\Interfaces\System\Post\API\PostRepositoryInterface;
 use App\Repositories\System\Category\API\CategoryRepository;
 use App\Repositories\System\Location\API\LocationRepository;
+use App\Interfaces\System\Dashboard\DashboardRepositoryInterface;
 use App\Interfaces\System\Category\API\CategoryRepositoryInterface;
 use App\Interfaces\System\Location\API\LocationRepositoryInterface;
 use App\Repositories\System\Announcement\API\AnnouncementRepository;
@@ -24,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
 public function register(): void
     {
+        $this->app->bind(DashboardRepositoryInterface::class, DashboardRepository::class);
+
+        //api
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
         $this->app->bind(LocationRepositoryInterface::class, LocationRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
