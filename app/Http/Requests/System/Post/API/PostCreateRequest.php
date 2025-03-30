@@ -27,7 +27,7 @@ class PostCreateRequest extends FormRequest
             "category_id" => ['required'],
             "city_id" => ['required'],
             "avg_persons" => ['nullable'],
-            "image" => ['required'],
+            "image" => ['required', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:5140'],
             "level" => ['required']
         ];
     }
