@@ -13,7 +13,7 @@ if (!function_exists('contains_filtered_words')) {
             'မြို့သိမ်း','ပျူစောထိီး','ထောက်ပို့','အုပ်ကြီး', 'ရွေးကောက်ပွဲ','ဒီမိုကရေစီ', 'Air Strike', 'Drone','ဒရုန်း', 'အဲစထရိုက်',
             'ငါလိုးမသား', 'မအေလိုး', 'ကိုမေကိုလိုး', 'ကမကလ', 'ဖရဲသီး','နီပိန်း','ကြံ့ဖွတ်', 'ကြံ့ခိုင်ရေးပါတီ', 'Bomb',
             'KIA', 'ကေအိုင်အေ', 'ကေအန်ယူ', 'KNU','TNLA','သပိတ်', 'ပစ်ခတ်', 'ဆန္ဒပြ', 'Democracy',
-            'Protest', 'Resistance', 'Rebel', 'Revolution','သတ်ဖြတ်', 'သေဆုံး', 'လူသတ်',
+            'Protest', 'Resistance', 'Rebel', 'Revolution','သတ်ဖြတ်', 'လူသတ်',
             'ဖမ်းဆီး', 'အဓမ္မဖမ်းဆီး', 'လူ့အခွင့်အရေး', 'Political Prisoner','Execution', 'Torture', 'Massacre'
         ];
 
