@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(City::class);
     }
+
+    public function helpedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_helps')->withTimestamps();
+    }
 }

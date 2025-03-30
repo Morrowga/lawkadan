@@ -36,4 +36,10 @@ class Post extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
     }
+
+    public function helpers()
+    {
+        return $this->belongsToMany(User::class, 'post_helps')->withTimestamps();
+    }
 }
+    

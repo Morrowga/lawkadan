@@ -95,6 +95,29 @@ class PostRepository implements PostRepositoryInterface
         }
     }
 
+    public function activities(Request $request)
+    {
+        $user = Auth::user();
+
+        try {
+
+            $data = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(10);
+
+            if($request->query('type') != 'post')
+            {
+                $ids = $user->helpedPosts()->pluck('post_id')->toArray();
+
+                $data = Post::whereIn('id', $ids)->paginate(10);
+            }
+
+            return $this->success('Post has been fetched successfully.', new PostResource($data));
+
+        } catch (\Exception $e) {
+
+            return $this->error($e->getMessage());
+        }
+    }
+
     public function update(Request $request,Post $post)
     {
         DB::beginTransaction();
@@ -131,8 +154,15 @@ class PostRepository implements PostRepositoryInterface
                 return $this->error('Post not found', 400);
             }
 
-            $post->help_count += 1;
-            $post->save();
+            $user = Auth::user();
+
+            if (!$user->helpedPosts()->where('post_id', $post->id)->exists()) {
+
+                $user->helpedPosts()->attach($post->id);
+
+                $post->help_count += 1;
+                $post->save();
+            }
 
             DB::commit();
 

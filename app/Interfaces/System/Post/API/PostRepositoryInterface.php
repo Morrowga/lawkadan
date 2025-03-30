@@ -11,6 +11,8 @@ interface PostRepositoryInterface
 
     public function store(Request $request);
 
+    public function activities(Request $request);
+
     public function update(Request $request, Post $post);
 
     public function helpCount(Request $request, Post $post);

@@ -45,6 +45,12 @@ class PostController extends Controller
         return $createPost;
     }
 
+    public function activities(Request $request)
+    {
+        $data = $this->postRepository->activities($request);
+
+        return $data;
+    }
 
     public function helpCount(Request $request, $post)
     {

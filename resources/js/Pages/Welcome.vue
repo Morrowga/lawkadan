@@ -29,8 +29,8 @@ function handleImageError() {
 <template>
     <Head title="Welcome" />
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 h-screen flex items-center justify-center">
-        <div class="text-center" style="font-size: 10rem;">
-            လောကဓံ...
+        <div class="text-center d-flex justify-center" style="font-size: 10rem;">
+            <img src="applogo.png" width="50%" alt="">
         </div>
     </div>
 </template>

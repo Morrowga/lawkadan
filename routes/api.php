@@ -16,6 +16,7 @@ Route::prefix('api/sys')->group(function () {
         Route::resource('categories', CategoryController::class)->only(['index']);
         Route::resource('posts', PostController::class)->only(['index', 'store', 'update']);
         Route::post('posts/help-count/{post}', [PostController::class, 'helpCount']);
+        Route::get('posts/activities', [PostController::class, 'activities']);
         Route::resource('announcements', AnnouncementController::class)->only(['index', 'store']);
     });
 
