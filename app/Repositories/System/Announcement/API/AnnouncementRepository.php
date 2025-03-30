@@ -22,11 +22,21 @@ class AnnouncementRepository implements AnnouncementRepositoryInterface
     {
         try {
 
-            $announcement = Announcement::where('start_date', '<=', now())
-            ->where('end_date', '>=', now())
-            ->first();
-            
-            return $this->success('Announcement successfully fetched.', new AnnouncementResource($announcement));
+            $type = $request->query('type');
+
+            $announcements = Announcement::where('start_date', '<=', now())
+            ->where('end_date', '>=', now());
+
+            if ($type == 'announcement') {
+                $announcements->whereNull('city_id');
+            } else {
+                $announcements->whereNotNull('city_id');
+            }
+
+            $announcements = $announcements->with('city')->get();
+
+
+            return $this->success('Announcement successfully fetched.', AnnouncementResource::collection($announcements));
 
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), 500);

@@ -33,7 +33,7 @@ class PostRepository implements PostRepositoryInterface
             $posts = Post::with(['user', 'city', 'category'])
             ->where('status', '!=', 'closed')
             ->where('city_id', $request->query('city_id'))
-            ->orderBy('created_at', 'desc') 
+            ->orderBy('created_at', 'desc')
             ->paginate(10);
 
             $postsArray = [
@@ -58,6 +58,10 @@ class PostRepository implements PostRepositoryInterface
         DB::beginTransaction();
 
         try {
+
+            if (contains_filtered_words($request->title) || contains_filtered_words($request->description)) {
+                return $this->error('Your content contains restricted words.', 400);
+            }
 
             $request['uuid'] = Str::uuid();
             $request['user_id'] = Auth::user()->id;
