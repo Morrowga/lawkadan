@@ -13,10 +13,10 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ['ငလျင်ဘေး', 'အထွေထွေ', 'ရေဘေး', 'မီးဘေး'];
+        $categories = ['ငလျင်ဘေး', 'အထွေထွေ', 'ရေဘေး', 'မီးဘေး', 'ဓားပြမှု', 'လူပျောက်/ပစ္စည်းပျောက်', 'နေစရာမဲ့/စားစရာမဲ့'];
 
         foreach ($categories as $category) {
-            Category::create(['name' => $category]);
+            Category::firstOrCreate(['name' => $category]);
         }
     }
 }
