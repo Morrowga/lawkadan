@@ -101,7 +101,7 @@ class PostRepository implements PostRepositoryInterface
 
         try {
 
-            $data = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(10);
+            $data = Post::with(['city', 'user', 'category'])->where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(10);
 
             if($request->query('type') != 'post')
             {
