@@ -40,7 +40,7 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div class="my-4">
                 <p class="text-center d-flex justify-center" style="font-size: 3rem;">
-                    <img src="applogo.png" width="30%" alt="">
+                    <img src="applogo.png" width="30%" alt="" style="border-radius: 20px;">
                 </p>
             </div>
 
