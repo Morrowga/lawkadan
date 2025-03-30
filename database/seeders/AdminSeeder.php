@@ -17,10 +17,10 @@ class AdminSeeder extends Seeder
     {
         User::create([
             'name' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'ad@gmail.com',
             'city_id' => 1,
             'msisdn' => 'asdasdsad',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('password2025'),
         ]);
     }
 }
