@@ -12,7 +12,7 @@ class Post extends Model implements HasMedia
 
     protected $table = 'posts';
 
-    protected $fillable = ['title', 'description','help_count','remark', 'uuid','user_id', 'category_id', 'city_id', 'avg_persons', 'status', 'level'];
+    protected $fillable = ['title','phone_one', 'phone_two', 'description','help_count','remark', 'uuid','user_id', 'category_id', 'city_id', 'avg_persons', 'status', 'level'];
 
     protected $appends = ['image_url'];
 
@@ -42,4 +42,3 @@ class Post extends Model implements HasMedia
         return $this->belongsToMany(User::class, 'post_helps')->withTimestamps();
     }
 }
-    
