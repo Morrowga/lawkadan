@@ -56,7 +56,7 @@ const addOrUpdateQueryParam = (url, param, value) => {
 const form = useForm();
 
 const deleteForm = (id) => {
-    form.post(route('dashboard.posts.delete', id), {
+    form.delete(route('dashboard.posts.delete', id), {
         onSuccess: () => {
         },
         onError: (error) => {
