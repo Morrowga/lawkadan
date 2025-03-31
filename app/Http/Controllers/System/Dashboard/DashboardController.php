@@ -32,4 +32,11 @@ class DashboardController extends Controller
 
         return redirect()->back();
     }
+
+    public function postDelete(Request $request, Post $post)
+    {
+        $data = $this->dashboardRepository->postDelete($request, $post);
+
+        return redirect()->back();
+    }
 }

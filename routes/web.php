@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::post('/posts/status/{post}', [DashboardController::class, 'postApproval'])->name('dashboard.posts.status');
+    Route::delete('/posts/{post}', [DashboardController::class, 'postDelete'])->name('dashboard.posts.delete');
 });
 
 Route::middleware('auth')->group(function () {
