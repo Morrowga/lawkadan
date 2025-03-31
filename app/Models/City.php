@@ -11,4 +11,9 @@ class City extends BaseCity
     {
         return $this->belongsTo(User::class);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
