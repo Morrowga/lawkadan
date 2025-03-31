@@ -29,7 +29,10 @@ class LocationRepository implements LocationRepositoryInterface
                 $query = City::get();
                 $data = CityResource::collection($query);
             } else {
-                $query = State::with('cities')->get();
+                $query = State::with(['cities' => function ($query) {
+                    $query->withCount('posts'); // Count posts per city
+                }])
+                ->get();
 
                 $data = StateResource::collection($query);
             }
