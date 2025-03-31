@@ -26,8 +26,10 @@ class PostCreateRequest extends FormRequest
             "description" => ['required'],
             "category_id" => ['required'],
             "city_id" => ['required'],
-            "avg_persons" => ['required'],
-            "phone_one" => ['required', 'regex:/^0[0-9]{5,10}$/'],
+            // "avg_persons" => ['required'],
+            // "phone_one" => ['required', 'regex:/^0[0-9]{5,10}$/'],
+            "avg_persons" => ['nullable'],
+            "phone_one" => ['nullable'],
             "phone_two" => ['nullable'],
             "image" => ['required', 'image', 'mimes:jpg,jpeg,png,gif,webp,heic'],
             "level" => ['required']
