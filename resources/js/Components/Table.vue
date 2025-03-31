@@ -59,8 +59,8 @@ const addOrUpdateQueryParam = (url, param, value) => {
 
 const form = useForm();
 
-const deleteForm = (id) => {
-    form.delete(route('dashboard.posts.delete', id), {
+const deleteForm = (id, route) => {
+    form.delete(route(route, id), {
         onSuccess: () => {
         },
         onError: (error) => {
@@ -221,13 +221,14 @@ onMounted(() => {
                             >
                                 <VBtn color="green" class="text-white" v-if="item.status == 'closed'" @click="changeStatus(item, 'active')">Approve</VBtn>
                                 <VBtn class="mx-2" color="red" v-if="item.status == 'active' || item.status == 'done'" @click="changeStatus(item, 'closed')">Cancel</VBtn>
+                                <VBtn class="mx-2" color="red" @click="deleteForm(item.id, 'dashboard.posts.delete')">Delete</VBtn>
                             </td>
                             <td
                                 v-if="url == 'users'"
                                 class="fixed-column"
                                 style="min-width: 100px; width: 100px;"
                             >
-                                <VBtn class="mx-2" color="red" @click="deleteForm(item.id)">Delete</VBtn>
+                                <VBtn class="mx-2" color="red" @click="deleteForm(item.id, 'users.destroy')">Delete</VBtn>
                                 <VBtn class="mx-2" color="red" v-if="item.is_active == true" @click="changeActive(item, false)">Ban</VBtn>
                                 <VBtn class="mx-2 text-white" color="green" v-if="item.is_active == false" @click="changeActive(item, true)">Restore</VBtn>
                             </td>
