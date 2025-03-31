@@ -11,7 +11,6 @@ use App\Traits\ApiResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\System\Location\API\CityResource;
-use App\Http\Resources\System\Location\API\StateResource;
 use App\Interfaces\System\Location\API\LocationRepositoryInterface;
 
 class LocationRepository implements LocationRepositoryInterface
@@ -29,9 +28,7 @@ class LocationRepository implements LocationRepositoryInterface
                 $query = City::get();
                 $data = CityResource::collection($query);
             } else {
-                $query = State::with(['cities' => function ($query) {
-                    $query->withCount('posts');
-                }])->get();
+                $query = State::with('cities')->get();
 
                 $data = StateResource::collection($query);
             }
