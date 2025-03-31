@@ -24,6 +24,11 @@ class AuthRepository implements AuthRepositoryInterface
             $user = User::with('city')->where('msisdn', $request->msisdn)->first();
 
             if ($user) {
+                if(!$user->is_active)
+                {
+                    return $this->error('Your account has been restricted.', 401);
+                }
+
                 if (!Hash::check($request->password, $user->password)) {
                     return $this->error('Incorrect password.', 401);
                 }
