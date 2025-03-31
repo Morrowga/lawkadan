@@ -27,8 +27,7 @@ class AnnouncementRepository implements AnnouncementRepositoryInterface
             $nowInYangon = Carbon::now('Asia/Yangon');
 
             $announcements = Announcement::where('start_date', '<=', $nowInYangon)
-                ->where('end_date', '>=', $nowInYangon)
-                ->get();
+                ->where('end_date', '>=', $nowInYangon);
 
             if ($type == 'announcement') {
                 $announcements->whereNull('city_id');
