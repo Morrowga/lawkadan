@@ -11,6 +11,7 @@ use App\Traits\ApiResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\System\Location\API\CityResource;
+use App\Http\Resources\System\Location\API\StateResource;
 use App\Interfaces\System\Location\API\LocationRepositoryInterface;
 
 class LocationRepository implements LocationRepositoryInterface
