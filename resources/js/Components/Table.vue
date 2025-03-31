@@ -32,6 +32,10 @@ const statusForm = useForm({
     status: null,
 });
 
+const activeForm = useForm({
+    status: true,
+});
+
 const perPage = ref('10');
 const queryParams = ref({});
 
@@ -77,6 +81,19 @@ const changeStatus = (item, status) => {
     statusForm.status = status
 
     statusForm.post(route('dashboard.posts.status', item.id), {
+        onSuccess: () => {
+            statusForm.reset();
+        },
+        onError: (error) => {
+            console.error("Form submission error:", error);
+        },
+    });
+}
+
+const changeActive = (item, status) => {
+    activeForm.status = status
+
+    activeForm.post(route('users.status', item.id), {
         onSuccess: () => {
             statusForm.reset();
         },
@@ -171,7 +188,7 @@ onMounted(() => {
                         </tr>
 
                         <tr v-else v-for="(item, index) in data?.data" :key="index" class="cursor-pointer">
-                            <td style="color: #45B4D3; min-width: 80px; width: 80px;" v-if="url != 'chats' && url != 'users'">
+                            <td style="color: #45B4D3; min-width: 80px; width: 80px;">
                                 {{ index + 1 }}
                             </td>
                             <td
@@ -181,6 +198,9 @@ onMounted(() => {
                             >
                                 <div v-if="header.value == 'description'">
                                     {{ item[header.value]?.length > 40 ? item[header.value].substring(0, 40) + '...' : item[header.value] }}
+                                </div>
+                                <div v-if="header.value == 'city_id'">
+                                    {{ item.city?.name_mm }}
                                 </div>
                                 <div v-else-if="header.value == 'created_at'">
                                     <div v-if="item.created_at">
@@ -195,12 +215,21 @@ onMounted(() => {
                             </td>
                             <!-- Fixed action column -->
                             <td
+                            v-if="url == 'dashboard'"
                             class="fixed-column"
                             style="min-width: 100px; width: 100px;"
                             >
                                 <VBtn color="green" class="text-white" v-if="item.status == 'closed'" @click="changeStatus(item, 'active')">Approve</VBtn>
                                 <VBtn class="mx-2" color="red" v-if="item.status == 'active' || item.status == 'done'" @click="changeStatus(item, 'closed')">Cancel</VBtn>
+                            </td>
+                            <td
+                                v-if="url == 'users'"
+                                class="fixed-column"
+                                style="min-width: 100px; width: 100px;"
+                            >
                                 <VBtn class="mx-2" color="red" @click="deleteForm(item.id)">Delete</VBtn>
+                                <VBtn class="mx-2" color="red" v-if="item.is_active == true" @click="changeActive(item, false)">Ban</VBtn>
+                                <VBtn class="mx-2 text-white" color="green" v-if="item.is_active == false" @click="changeActive(item, true)">Restore</VBtn>
                             </td>
                         </tr>
                     </tbody>

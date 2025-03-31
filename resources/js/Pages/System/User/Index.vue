@@ -4,24 +4,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-const props = defineProps(['data']);
+const props = defineProps(['users']);
 
 const tableHeaders = ref([
-   {
-     name: 'Title',
-     value: "title"
-   },
-   {
-     name: 'Description',
-     value: "description"
-   },
-   {
-     name: 'Date',
-     value: "created_at"
-   }
-]);
-
-const tableUserHeaders = ref([
    {
      name: 'Msisdn',
      value: "msisdn"
@@ -54,9 +39,9 @@ const tableUserHeaders = ref([
                 <div class="p-6 text-gray-900">
                     <Table
                         :headers="tableHeaders"
-                        :data="props?.data"
-                        :tableTitle="'POSTS'"
-                        :url="'dashboard'"
+                        :data="props?.users"
+                        :tableTitle="'Users'"
+                        :url="'users'"
                     />
                 </div>
             </div>

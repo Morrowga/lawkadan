@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\System\User\UserRepository;
 use App\Repositories\System\Auth\API\AuthRepository;
 use App\Repositories\System\Post\API\PostRepository;
+use App\Interfaces\System\User\UserRepositoryInterface;
 use App\Repositories\System\Dashboard\DashboardRepository;
 use App\Interfaces\System\Auth\API\AuthRepositoryInterface;
 use App\Interfaces\System\Post\API\PostRepositoryInterface;
@@ -27,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
 public function register(): void
     {
         $this->app->bind(DashboardRepositoryInterface::class, DashboardRepository::class);
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
 
         //api
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);

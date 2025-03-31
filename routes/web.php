@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\System\User\UserController;
 use App\Http\Controllers\System\Dashboard\DashboardController;
 
 Route::get('/', function () {
@@ -17,6 +18,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::resource('users', UserController::class);
+    Route::post('/users/status/{user}', [UserController::class, 'status'])->name('users.status');
     Route::post('/posts/status/{post}', [DashboardController::class, 'postApproval'])->name('dashboard.posts.status');
     Route::delete('/posts/{post}', [DashboardController::class, 'postDelete'])->name('dashboard.posts.delete');
 });
