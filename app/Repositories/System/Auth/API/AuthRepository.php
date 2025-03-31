@@ -23,6 +23,16 @@ class AuthRepository implements AuthRepositoryInterface
             // return $ip = $request->ip();
             $user = User::with('city')->where('msisdn', $request->msisdn)->first();
 
+            if($request->city_id && !$user)
+            {
+                return $this->error('You have to register the account first.', 400);
+            }
+
+            if($request->city_id != null && $user)
+            {
+                return $this->error('Your account is already exist. Please use the sign up', 400);
+            }
+
             if ($user) {
                 if(!$user->is_active)
                 {

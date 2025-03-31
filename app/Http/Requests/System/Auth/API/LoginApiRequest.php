@@ -24,7 +24,7 @@ class LoginApiRequest extends FormRequest
         return [
             'msisdn' => ['required', 'regex:/^0[0-9]{5,10}$/'],
             'ip' => ['required'],
-            'city_id' => ['required'],
+            'city_id' => ['nullable'],
             'password' => ['required'],
             'address' => ['nullable']
         ];
