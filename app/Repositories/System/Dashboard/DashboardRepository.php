@@ -37,4 +37,15 @@ class DashboardRepository implements DashboardRepositoryInterface
             dd($e->getMessage());
         }
     }
+
+    public function postDelete(Request $request, Post $post)
+    {
+        try {
+
+            $post->delete();
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
 }

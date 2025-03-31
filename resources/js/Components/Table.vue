@@ -49,9 +49,21 @@ const updatePerPage = () => {
 
 const addOrUpdateQueryParam = (url, param, value) => {
   const urlObj = new URL(url, window.location.origin);
-  urlObj.searchParams.set(param, value);  // Set or update the query parameter
-  return urlObj.href;  // Return the updated URL
+  urlObj.searchParams.set(param, value);
+  return urlObj.href;
 };
+
+const form = useForm();
+
+const deleteForm = (id) => {
+    form.post(route('dashboard.posts.delete', id), {
+        onSuccess: () => {
+        },
+        onError: (error) => {
+            console.error("Form submission error:", error);
+        },
+    });
+}
 
 const page = usePage();
 
@@ -188,6 +200,7 @@ onMounted(() => {
                             >
                                 <VBtn color="green" class="text-white" v-if="item.status == 'closed'" @click="changeStatus(item, 'active')">Approve</VBtn>
                                 <VBtn class="mx-2" color="red" v-if="item.status == 'active' || item.status == 'done'" @click="changeStatus(item, 'closed')">Cancel</VBtn>
+                                <VBtn class="mx-2" color="red" @click="deleteForm(item.id)">Delete</VBtn>
                             </td>
                         </tr>
                     </tbody>

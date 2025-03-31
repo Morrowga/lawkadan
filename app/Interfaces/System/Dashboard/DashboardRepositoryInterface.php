@@ -9,5 +9,8 @@ interface DashboardRepositoryInterface
 {
     public function dashboard(Request $request);
 
-public function postApproval(Request $request, Post $post);
+    public function postApproval(Request $request, Post $post);
+
+    public function postDelete(Request $request, Post $post);
+
 }
