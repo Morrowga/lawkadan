@@ -23,7 +23,7 @@ class AuthRepository implements AuthRepositoryInterface
             // return $ip = $request->ip();
             $user = User::with('city')->where('msisdn', $request->msisdn)->first();
 
-            if($request->city_id && !$user)
+            if($request->city_id == null && !$user)
             {
                 return $this->error('အကောင့် အသစ်အရင် ပြုလုပ်ပေးပါ။', 400);
             }
