@@ -27,7 +27,7 @@ class PostRepository implements PostRepositoryInterface
     {
         try {
             if (!$request->has('city_id')) {
-                return $this->error('City ID Required', 400);
+                return $this->error('မြို့လိုအပ်ပါသည်။', 400);
             }
 
             $posts = Post::with(['user', 'city', 'category'])
@@ -60,7 +60,7 @@ class PostRepository implements PostRepositoryInterface
         try {
 
             if (contains_filtered_words($request->title) || contains_filtered_words($request->description)) {
-                return $this->error('Your content contains restricted words.', 400);
+                return $this->error('တားမြစ်ထားသော စာသားများ ပါ၀င်နေပါသည်။ စာသားပြန်စစ်ပေးပါ။', 400);
             }
 
             $request['uuid'] = Str::uuid();
@@ -125,7 +125,7 @@ class PostRepository implements PostRepositoryInterface
         try {
             if(empty($post))
             {
-                return $this->error('Post not found', 400);
+                return $this->error('ပို့စ်ရှာမတွေ့ပါ။', 400);
             }
 
             $post->update([
@@ -151,7 +151,7 @@ class PostRepository implements PostRepositoryInterface
         try {
             if(empty($post))
             {
-                return $this->error('Post not found', 400);
+                return $this->error('ပို့စ်ရှာမတွေ့ပါ။', 400);
             }
 
             $user = Auth::user();

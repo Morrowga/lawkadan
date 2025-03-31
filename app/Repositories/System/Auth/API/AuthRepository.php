@@ -25,22 +25,22 @@ class AuthRepository implements AuthRepositoryInterface
 
             if($request->city_id && !$user)
             {
-                return $this->error('You have to register the account first.', 400);
+                return $this->error('အကောင့် အသစ်အရင် ပြုလုပ်ပေးပါ။', 400);
             }
 
             if($request->city_id != null && $user)
             {
-                return $this->error('Your account is already exist. Please use the sign up', 400);
+                return $this->error('ရှိပြီးသားအေကာင့်ဖြစ်နေပါသည်။', 400);
             }
 
             if ($user) {
                 if(!$user->is_active)
                 {
-                    return $this->error('Your account has been restricted.', 401);
+                    return $this->error('အကောင့်ကို ခဏ ပိတ်ထားပါသည်။', 401);
                 }
 
                 if (!Hash::check($request->password, $user->password)) {
-                    return $this->error('Incorrect password.', 401);
+                    return $this->error('လျှိူ့ ၀ှက်ကုဒ် မှားနေပါသည်။', 401);
                 }
             } else {
                 $randomName = 'User@' . Str::random(5);
