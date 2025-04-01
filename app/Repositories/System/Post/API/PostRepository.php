@@ -78,7 +78,7 @@ class PostRepository implements PostRepositoryInterface
 
                 $tempPath = storage_path("app/{$fileName}");
 
-                $image = Image::read($imageFile)->resize(800, 550);
+                $image = Image::read($imageFile)->resize(700, 700);
                 $image->save($tempPath);
 
                 $post->addMedia($tempPath)->toMediaCollection('posts');
