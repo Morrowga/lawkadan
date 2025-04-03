@@ -20,6 +20,7 @@ class StateResource extends JsonResource
             "name_mm" => $this->name_mm,
             "name_en" => $this->name_en,
             "flat" => $this->flag,
+            "is_hot" => $this->is_hot,
             "active" => $this->active,
             "cities" => CityResource::collection($this->cities)
         ];
