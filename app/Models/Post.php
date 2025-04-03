@@ -12,7 +12,7 @@ class Post extends Model implements HasMedia
 
     protected $table = 'posts';
 
-    protected $fillable = ['title','phone_one', 'phone_two', 'description','help_count','remark', 'uuid','user_id', 'category_id', 'city_id', 'avg_persons', 'status', 'level'];
+    protected $fillable = ['title','phone_one', 'phone_two','phone_one_has_viber','phone_two_has_viber','location_link', 'additional_link', 'description','help_count','remark', 'uuid','user_id', 'category_id', 'city_id', 'avg_persons', 'status', 'level'];
 
     protected $appends = ['image_url'];
 
